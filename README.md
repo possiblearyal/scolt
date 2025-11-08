@@ -1,34 +1,34 @@
-# COLTS
+# SCOLT
 
-![COLTS Banner](./assets/banner.png)
+![SCOLT Banner](./assets/banner.png)
 
 **C**ompact **O**bject **L**ayout with **T**abular **S**erialization
 
-A JavaScript library that converts nested JSON structures into a compact columnar table format. COLTS dramatically reduces data size by identifying and reusing duplicate objects across your data structures.
+A JavaScript library that converts nested JSON structures into a compact columnar table format. SCOLT dramatically reduces data size by identifying and reusing duplicate objects across your data structures.
 
-## Why COLTS?
+## Why SCOLT?
 
-JSON is readable but inefficient for storing repetitive data. COLTS solves this by:
+JSON is readable but inefficient for storing repetitive data. SCOLT solves this by:
 
 1. **Automatic deduplication** - Identical objects are stored once and referenced everywhere else
 2. **Columnar storage** - Arrays of objects become compact tables
 3. **Smart referencing** - Complex nested structures are flattened and cross-referenced
 
-### When to Use COLTS
+### When to Use SCOLT
 
-COLTS works best when your data has:
+SCOLT works best when your data has:
 - Repeated object structures
 - Arrays of similar objects
 - Nested relationships with duplication
 - Large datasets with patterns
 
-For simple, small JSON objects, the overhead of COLTS structure may not provide benefits.
+For simple, small JSON objects, the overhead of SCOLT structure may not provide benefits.
 
 ## How It Works
 
-![COLTS Workflow](./assets/workflow.png)
+![SCOLT Workflow](./assets/workflow.png)
 
-COLTS analyzes your JSON structure and:
+SCOLT analyzes your JSON structure and:
 1. Identifies arrays of objects and converts them to tables
 2. Detects duplicate objects and stores them once
 3. Creates references between related data
@@ -37,13 +37,13 @@ COLTS analyzes your JSON structure and:
 ## Installation
 
 ```bash
-npm install colts
+npm install scolt
 ```
 
 ## Quick Start
 
 ```javascript
-import { COLTS } from 'colts';
+import { SCOLT } from 'scolt';
 
 const data = {
   users: [
@@ -53,8 +53,8 @@ const data = {
   ]
 };
 
-const colts = new COLTS();
-const result = colts.parse(data);
+const scolt = new SCOLT();
+const result = scolt.parse(data);
 console.log(result);
 ```
 
@@ -83,7 +83,7 @@ Output:
 }
 ```
 
-**COLTS Output:**
+**SCOLT Output:**
 ```
 #string: "Hello World"
 #number: 42
@@ -105,7 +105,7 @@ Output:
 }
 ```
 
-**COLTS Output:**
+**SCOLT Output:**
 ```
 #id: 1
 #name: Test
@@ -119,7 +119,7 @@ Output:
 [1, 2, 3, 4, 5]
 ```
 
-**COLTS Output:**
+**SCOLT Output:**
 ```
 [1,2,3,4,5]
 ```
@@ -140,7 +140,7 @@ Output:
 }
 ```
 
-**COLTS Output:**
+**SCOLT Output:**
 ```
 @profile{age,email}: 30,john@example.com
 #user{id,name,profile}: 1,John,@profile
@@ -159,7 +159,7 @@ Output:
 }
 ```
 
-**COLTS Output:**
+**SCOLT Output:**
 ```
 #users{id,name}:
   1,John
@@ -180,12 +180,12 @@ Output:
 }
 ```
 
-**COLTS Output:**
+**SCOLT Output:**
 ```
 #users{id,role}: 1,admin
 ```
 
-Notice how three identical objects become a single row. This is where COLTS shines.
+Notice how three identical objects become a single row. This is where SCOLT shines.
 
 ### Deep Nesting with References
 
@@ -215,7 +215,7 @@ Notice how three identical objects become a single row. This is where COLTS shin
 }
 ```
 
-**COLTS Output:**
+**SCOLT Output:**
 ```
 @lead{id,name,role}:
   1,John,lead
@@ -245,7 +245,7 @@ Both teams share the same members array, stored once and referenced twice.
 }
 ```
 
-**COLTS Output:**
+**SCOLT Output:**
 ```
 @counts{likes,views}: 50,100
 #id: 1
@@ -266,7 +266,7 @@ Both teams share the same members array, stored once and referenced twice.
 }
 ```
 
-**COLTS Output:**
+**SCOLT Output:**
 ```
 #users{id,name,email}:
   1,John,john@example.com
@@ -300,7 +300,7 @@ Both teams share the same members array, stored once and referenced twice.
 }
 ```
 
-**COLTS Output:**
+**SCOLT Output:**
 ```
 @manager{id,name,role}: 1,John,manager
 @lead{id,name,role}: 2,Jane,lead
@@ -336,7 +336,7 @@ Both teams share the same members array, stored once and referenced twice.
 }
 ```
 
-**COLTS Output:**
+**SCOLT Output:**
 ```
 @department{id,name}: 1,"Dept 1"
 @employees{id,name,department}:
@@ -370,7 +370,7 @@ Both teams share the same members array, stored once and referenced twice.
 }
 ```
 
-**COLTS Output:**
+**SCOLT Output:**
 ```
 @colors{primary,secondary}: #000,#fff
 @layout{colors,mode}: @colors,dark
@@ -401,7 +401,7 @@ All three sections share the same colors object, stored once.
 }
 ```
 
-**COLTS Output:**
+**SCOLT Output:**
 ```
 #matrix: [[1,2,3],[4,5,6],[7,8,9]]
 #jagged: [[1],[2,3],[4,5,6],[7,8,9,10]]
@@ -443,7 +443,7 @@ All three sections share the same colors object, stored once.
 }
 ```
 
-**COLTS Output:**
+**SCOLT Output:**
 ```
 @styles{color,fontSize}:
   #000,24px
@@ -491,7 +491,7 @@ All three sections share the same colors object, stored once.
 }
 ```
 
-**COLTS Output:**
+**SCOLT Output:**
 ```
 @author{id,name}: 2,Jane
 @comments{author,text}:
@@ -508,14 +508,14 @@ Notice how the author appears in two comments but is stored only once.
 ### Constructor
 
 ```javascript
-const colts = new COLTS();
+const scolt = new SCOLT();
 ```
 
-Creates a new COLTS parser instance.
+Creates a new SCOLT parser instance.
 
 ### parse(data, config)
 
-Converts JSON data to COLTS format.
+Converts JSON data to SCOLT format.
 
 **Parameters:**
 
@@ -540,19 +540,19 @@ Converts JSON data to COLTS format.
 }
 ```
 
-**Returns:** String - The COLTS formatted output
+**Returns:** String - The SCOLT formatted output
 
 **Example:**
 
 ```javascript
-const colts = new COLTS();
-const result = colts.parse(data, {
+const scolt = new SCOLT();
+const result = scolt.parse(data, {
   defaultValues: { status: 'active' },
   tableStructure: { users: 'people' }
 });
 ```
 
-## Understanding COLTS Format
+## Understanding SCOLT Format
 
 ### Syntax Elements
 
@@ -568,7 +568,7 @@ const result = colts.parse(data, {
 
 ### How References Work
 
-COLTS creates tables (prefixed with `@`) for nested structures and arrays of objects. These tables can be referenced by name or by specific row indices.
+SCOLT creates tables (prefixed with `@`) for nested structures and arrays of objects. These tables can be referenced by name or by specific row indices.
 
 **Full table reference:**
 ```
@@ -592,48 +592,48 @@ References rows at indices 0, 2, and 5.
 
 ![Comparison Chart](./assets/comparison.png)
 
-COLTS efficiency compared to JSON and TOON format across different data structures:
+SCOLT efficiency compared to JSON and TOON format across different data structures:
 
 ### Format Efficiency by Test Case
 
-| Test Case | JSON | TOON | COLTS | Winner |
+| Test Case | JSON | TOON | SCOLT | Winner |
 |-----------|------|------|-------|--------|
 | Primitive Values | 111 B | 100 B | 109 B | TOON |
 | Simple Object | 36 B | 29 B | 32 B | TOON |
 | Simple Array | 11 B | 14 B | 11 B | JSON |
 | Nested Objects | 79 B | 77 B | 81 B | TOON |
-| Array of Objects | 79 B | 44 B | 42 B | COLTS |
-| Duplicate Objects | 83 B | 48 B | 24 B | COLTS |
-| Ref Deep Nesting | 316 B | 302 B | 192 B | COLTS |
-| Mixed Content Types | 110 B | 109 B | 108 B | COLTS |
-| Sparse/Optional Fields | 128 B | 134 B | 101 B | COLTS |
-| Complex References | 286 B | 307 B | 255 B | COLTS |
+| Array of Objects | 79 B | 44 B | 42 B | SCOLT |
+| Duplicate Objects | 83 B | 48 B | 24 B | SCOLT |
+| Ref Deep Nesting | 316 B | 302 B | 192 B | SCOLT |
+| Mixed Content Types | 110 B | 109 B | 108 B | SCOLT |
+| Sparse/Optional Fields | 128 B | 134 B | 101 B | SCOLT |
+| Complex References | 286 B | 307 B | 255 B | SCOLT |
 | Circular References | 220 B | 344 B | 224 B | JSON |
-| Deep Duplicates | 241 B | 286 B | 233 B | COLTS |
-| Mixed Arrays | 141 B | 203 B | 84 B | COLTS |
-| Nested Arrays | 80 B | 105 B | 74 B | COLTS |
-| Complex Types | 165 B | 159 B | 149 B | COLTS |
-| Large Dataset | 15.71 KB | 16.88 KB | 10.58 KB | COLTS |
-| Document Structure | 475 B | 591 B | 461 B | COLTS |
-| Real World Example | 181 B | 276 B | 170 B | COLTS |
+| Deep Duplicates | 241 B | 286 B | 233 B | SCOLT |
+| Mixed Arrays | 141 B | 203 B | 84 B | SCOLT |
+| Nested Arrays | 80 B | 105 B | 74 B | SCOLT |
+| Complex Types | 165 B | 159 B | 149 B | SCOLT |
+| Large Dataset | 15.71 KB | 16.88 KB | 10.58 KB | SCOLT |
+| Document Structure | 475 B | 591 B | 461 B | SCOLT |
+| Real World Example | 181 B | 276 B | 170 B | SCOLT |
 
 ### Average Size Across All Tests
 
 - **JSON:** 1.02 KB (baseline)
 - **TOON:** 1.11 KB (108.4% of JSON)
-- **COLTS:** 732.22 Bytes (70.0% of JSON)
+- **SCOLT:** 732.22 Bytes (70.0% of JSON)
 
 **Key Findings:**
 
-For small, simple datasets, JSON, TOON, and COLTS perform similarly. The differences are minimal when dealing with primitive values or simple structures.
+For small, simple datasets, JSON, TOON, and SCOLT perform similarly. The differences are minimal when dealing with primitive values or simple structures.
 
-However, COLTS demonstrates significant advantages with:
+However, SCOLT demonstrates significant advantages with:
 - Duplicate object detection (71% reduction vs JSON)
 - Deep nesting with references (39% reduction vs JSON)
 - Large datasets (33% reduction vs JSON)
 - Complex references and relationships
 
-On extremely large datasets with repetitive structures, COLTS can achieve compression down to approximately 9% of the original JSON size, representing a 91% reduction in data size.
+On extremely large datasets with repetitive structures, SCOLT can achieve compression down to approximately 9% of the original JSON size, representing a 91% reduction in data size.
 
 ## Use Cases
 
@@ -654,7 +654,7 @@ Reduce bandwidth usage when transferring structured data between systems.
 
 ## Limitations
 
-COLTS is optimized for specific data patterns:
+SCOLT is optimized for specific data patterns:
 
 - **Not suitable for:** Small, simple objects without repetition
 - **Not suitable for:** Highly varied data with no patterns
@@ -667,7 +667,7 @@ COLTS is optimized for specific data patterns:
 
 Find the source code, report issues, or contribute:
 
-**GitHub:** [github.com/possiblearyal/colts](https://github.com/possiblearyal/colts)
+**GitHub:** [github.com/possiblearyal/scolt](https://github.com/possiblearyal/scolt)
 
 ## Author
 

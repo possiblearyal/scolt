@@ -1,14 +1,14 @@
 /**
- * COLTS - Convert nested JSON structures into a compact columnar table structure
+ * SCOLT - Convert nested JSON structures into a compact columnar table structure
  *
  * @example
- * const colts = new COLTS();
- * const result = colts.parse(jsonData, {
+ * const scolt = new SCOLT();
+ * const result = scolt.parse(jsonData, {
  *   defaultValues: { status: 'active' },
  *   tableStructure: { users: 'userList' }
  * });
  */
-export class COLTS {
+export class SCOLT {
   constructor() {
     this.initialize();
   }
@@ -26,7 +26,7 @@ export class COLTS {
    * @param {Object} [config={}] - Parser configuration
    * @param {Object} [config.defaultValues={}] - Default values for missing fields
    * @param {Object} [config.tableStructure={}] - Custom table name mappings
-   * @returns {string} The tabular COLTS format
+   * @returns {string} The tabular SCOLT format
    */
   parse(data, config = {}) {
     this.initialize();
