@@ -1,6 +1,6 @@
 {
   "name": "scolt",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A JavaScript library that converts nested JSON structures into a compact columnar table format. SCOLT dramatically reduces data size by identifying and reusing duplicate objects across your data structures.",
   "homepage": "https://github.com/possiblearyal/scolt#readme",
   "bugs": {
@@ -14,7 +14,15 @@
   "author": "sambhav",
   "type": "module",
   "main": "scolt.js",
+  "types": "scolt.ts",
+  "files": [
+    "scolt.js",
+    "scolt.ts"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "scolt": "^1.0.1"
   }
 }
